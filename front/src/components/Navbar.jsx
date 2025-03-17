@@ -1,13 +1,15 @@
 import { Link } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 
 const Navbar = ({ islogin, setIslogin }) => {
-  
+  const navigate = useNavigate()
   function handleLogin() {
     setIslogin(true);
   }
 
-  function handleLogout() {
-    setIslogin(false);
+  function handleRegister() {
+    // setIslogin(false);
+    navigate('/login')
   }
 
   return (
@@ -23,8 +25,8 @@ const Navbar = ({ islogin, setIslogin }) => {
         <button className="p-2 bg-yellow-500 rounded-full">👤</button>
 
         {islogin ? (
-          <Link onClick={handleLogout} to="/logout" className="p-2 bg-yellow-500 rounded text-black">
-            Logout
+          <Link onClick={handleRegister} to="/register" className="p-2 bg-yellow-500 rounded text-black">
+            Register
           </Link>
         ) : (
           <Link onClick={handleLogin} to="/login" className="p-2 bg-yellow-500 rounded text-black">
