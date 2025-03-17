@@ -1,8 +1,6 @@
 import { createBrowserRouter } from "react-router-dom";
 import NotFound from "./pages/NotFound";
 import First from "./pages/First";
-// import Navbar from "./components/Navbar";
-import Home from "./pages/Home";
 import AddInventory from "./pages/Addinventory.jsx";
 import InventoryTable from "./pages/Invetorytable.jsx";
 import ChangeInvetory from "./pages/ChangeInvetory.jsx";
