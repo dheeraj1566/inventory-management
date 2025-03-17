@@ -1,7 +1,10 @@
 import { useState } from "react";
-// import axiosInstance from "./axiosInstance"; // Import Axios Instance
+import { useNavigate } from "react-router-dom"; 
 import Instance from "../../AxiosConfig";
+
 const Register = () => {
+  const navigate = useNavigate(); 
+
   const [formData, setFormData] = useState({
     fname: "",
     lname: "",
@@ -11,19 +14,22 @@ const Register = () => {
 
   const [message, setMessage] = useState("");
 
-  // Handle Input Change
   const handleChange = (e) => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
   };
 
-  // Handle Form Submission
   const handleSubmit = async (e) => {
     e.preventDefault();
-    setMessage(""); // Clear previous messages
+    setMessage(""); 
 
     try {
       const res = await Instance.post("/auth/register", formData);
       setMessage(res.data.message);
+
+      setTimeout(() => {
+        navigate("/login"); 
+      }, 2000); 
+
       setFormData({ fname: "", lname: "", email: "", password: "" });
     } catch (error) {
       setMessage(error.response?.data?.message || "Something went wrong");

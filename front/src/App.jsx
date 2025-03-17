@@ -18,7 +18,7 @@ const App = createBrowserRouter([
       {path: "/add-invetory", element: <AddInventory />},
       {path: "/inventory-table", element: <InventoryTable />},
       {path: "/change-inventory", element: <ChangeInvetory />},
-      {path: "login", element: <Login />},
+      {path: "/login", element: <Login />},
       {path:"/register", element:<Register/>}
     ],
   },
