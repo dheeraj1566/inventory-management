@@ -7,6 +7,7 @@ import AddInventory from "./pages/Addinventory.jsx";
 import InventoryTable from "./pages/Invetorytable.jsx";
 import ChangeInvetory from "./pages/ChangeInvetory.jsx";
 import Login from "./pages/Login.jsx";
+import Register from "./pages/register.jsx";
 
 const App = createBrowserRouter([
   {
@@ -19,6 +20,7 @@ const App = createBrowserRouter([
       {path: "/inventory-table", element: <InventoryTable />},
       {path: "/change-inventory", element: <ChangeInvetory />},
       {path: "login", element: <Login />},
+      {path:"/register", element:<Register/>}
     ],
   },
 ]);
