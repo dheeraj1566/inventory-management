@@ -5,14 +5,12 @@ import usermodel from "../models/usermodel.js";
 
 const router = express.Router();
 
-
 router.post("/register", async (req, res) => {
   try {
     const { fname, lname, email, password } = req.body;
 
     let user = await usermodel.findOne({ email });
     if (user) return res.status(400).json({ message: "User already exists" });
-
 
     const hashedPassword = await bcrypt.hash(password, 10);
 
@@ -21,11 +19,10 @@ router.post("/register", async (req, res) => {
 
     res.status(201).json({ message: "User registered successfully" });
   } catch (error) {
-    console.error(error); 
+    console.error(error);
     res.status(500).json({ message: "Server Error" });
   }
 });
-
 
 router.post("/login", async (req, res) => {
   try {
@@ -33,16 +30,17 @@ router.post("/login", async (req, res) => {
     const user = await usermodel.findOne({ email });
     if (!user) return res.status(400).json({ message: "Invalid Credentials" });
 
-
-
-
     const isMatch = await bcrypt.compare(password, user.password);
-    if (!isMatch) return res.status(400).json({ message: "Invalid Credentials" });
+    if (!isMatch) {
+      return res.status(401).json({ message: "Invalid credentials" });
+    }
 
-    const token = jwt.sign({ userId: user._id }, process.env.JWT_SECRET, { expiresIn: "2h" });
+    const token = jwt.sign({ userId: user._id }, process.env.JWT_SECRET, {
+      expiresIn: "2h",
+    });
     res.json({ token });
   } catch (error) {
-    console.error(error); 
+    console.error(error);
     res.status(500).json({ message: "Server Error" });
   }
 });
