@@ -6,7 +6,7 @@ const Login = ({ setIsLogin }) => {
   const navigate = useNavigate();
   const [formData, setFormData] = useState({ email: "", password: "" });
   const [message, setMessage] = useState("");
-  const [loading, setLoading] = useState(false); // New loading state
+  const [loading, setLoading] = useState(false); 
 
   const handleChange = (e) => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
@@ -15,7 +15,7 @@ const Login = ({ setIsLogin }) => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     setMessage("");
-    setLoading(true); // Start loading
+    setLoading(true); 
 
     try {
       const res = await Instance.post("/auth/login", formData);
@@ -27,7 +27,7 @@ const Login = ({ setIsLogin }) => {
       console.error("Login Failed:", error);
       setMessage(error.response?.data?.message || "Invalid credentials");
     } finally {
-      setLoading(false); // Stop loading after request completes
+      setLoading(false);
     }
   };
 
