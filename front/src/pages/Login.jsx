@@ -35,7 +35,7 @@ const Login = ({ setIsLogin }) => {
       <div className="bg-white p-8 rounded-lg shadow-lg w-96">
         <h2 className="text-2xl font-bold text-center mb-4 text-black">Login</h2>
 
-        {message && <p className="text-red-600 text-center">{message}</p>}
+        {message && <p className="text-red-600 text-center text-black">{message}</p>}
 
         <form onSubmit={handleSubmit} className="space-y-4">
           <div>
@@ -43,7 +43,7 @@ const Login = ({ setIsLogin }) => {
             <input
               type="email"
               name="email"
-              className="w-full px-3 py-2 border rounded outline-none"
+              className="w-full px-3 py-2 border rounded outline-none text-black"
               placeholder="Enter email"
               onChange={handleChange}
               required
@@ -54,7 +54,7 @@ const Login = ({ setIsLogin }) => {
             <input
               type="password"
               name="password"
-              className="w-full px-3 py-2 border rounded outline-none"
+              className="w-full px-3 py-2 border rounded outline-none text black"
               placeholder="Enter password"
               onChange={handleChange}
               required
