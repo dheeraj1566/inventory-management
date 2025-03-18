@@ -24,12 +24,36 @@ router.post("/register", async (req, res) => {
   }
 });
 
+// router.post("/login", async (req, res) => {
+//   try {
+//     const { email, password } = req.body;
+//     const user = await usermodel.findOne({ email });
+//     console.log(user)
+//     if (!user) return res.status(400).json({ message: "Invalid Credentials" });
+
+//     const isMatch = await bcrypt.compare(password, user.password);
+//     if (!isMatch) {
+//       return res.status(401).json({ message: "Invalid credentials" });
+//     }
+
+//     const token = jwt.sign({ userId: user._id }, process.env.JWT_SECRET, {
+//       expiresIn: "2h",
+//     });
+//     res.json({ token });
+//   } catch (error) {
+//     console.error(error);
+//     res.status(500).json({ message: "Server Error" });
+//   }
+// });
+
 router.post("/login", async (req, res) => {
   try {
     const { email, password } = req.body;
     const user = await usermodel.findOne({ email });
-    console.log(user)
-    if (!user) return res.status(400).json({ message: "Invalid Credentials" });
+
+    if (!user) {
+      return res.status(404).json({ message: "User not found! Please register first." });
+    }
 
     const isMatch = await bcrypt.compare(password, user.password);
     if (!isMatch) {
@@ -39,6 +63,7 @@ router.post("/login", async (req, res) => {
     const token = jwt.sign({ userId: user._id }, process.env.JWT_SECRET, {
       expiresIn: "2h",
     });
+
     res.json({ token });
   } catch (error) {
     console.error(error);

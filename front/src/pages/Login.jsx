@@ -82,7 +82,7 @@
 
 
 import { useState } from "react";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, Link } from "react-router-dom";
 import Instance from "../../AxiosConfig";
 
 const Login = ({ setIsLogin }) => {
@@ -146,6 +146,14 @@ const Login = ({ setIsLogin }) => {
             Login
           </button>
         </form>
+
+        {/* 🔹 Register Link for New Users */}
+        <p className="text-center mt-4">
+          Not registered?{" "}
+          <Link to="/register" className="text-blue-600 hover:underline">
+            Create an account
+          </Link>
+        </p>
       </div>
     </div>
   );
