@@ -12,13 +12,15 @@ const PORT = process.env.PORT || 5000;
 
 
 const corsOptions = {
-  origin: "https://inventory-management-mu-hazel.vercel.app", 
-  methods: "GET, POST, PUT, DELETE",
+  origin: ["https://inventory-management-mu-hazel.vercel.app"], 
+  methods: "GET, POST,DELETE",
   credentials: true,
+  optionsSuccessStatus: 200, 
 };
 
 app.use(cors(corsOptions)); 
 app.use(express.json());
+
 
 app.use("/auth", authRoutes);
 
