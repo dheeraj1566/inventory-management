@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { createBrowserRouter, Navigate } from "react-router-dom";
+import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import NotFound from "./pages/NotFound";
 import First from "./pages/First";
 import AddInventory from "./pages/Addinventory";
@@ -7,11 +7,7 @@ import InventoryTable from "./pages/Invetorytable";
 import ChangeInventory from "./pages/ChangeInvetory";
 import Login from "./pages/Login";
 import Register from "./pages/Register";
-
-const ProtectedRoute = ({ element }) => {
-  const token = localStorage.getItem("token");
-  return token ? element : <Navigate to="/login" />;
-};
+import ProtectedRoute from "./ProtectedRoute";
 
 function AppRouter() {
   const [isLogin, setIsLogin] = useState(!!localStorage.getItem("token"));
@@ -21,7 +17,11 @@ function AppRouter() {
     { path: "/register", element: <Register /> },
     {
       path: "/",
-      element: <ProtectedRoute element={<First isLogin={isLogin} setIsLogin={setIsLogin} />} />,
+      element: (
+        <ProtectedRoute>
+          <First isLogin={isLogin} setIsLogin={setIsLogin} />
+        </ProtectedRoute>
+      ),
       children: [
         { path: "", element: <AddInventory /> },
         { path: "/add-inventory", element: <AddInventory /> },
@@ -32,7 +32,7 @@ function AppRouter() {
     },
   ]);
 
-  return router;
+  return <RouterProvider router={router} />;
 }
 
 export default AppRouter;

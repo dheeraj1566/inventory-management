@@ -9,7 +9,8 @@ function First({ isLogin, setIsLogin }) {
   useEffect(() => {
     const token = localStorage.getItem("token");
     if (!token) {
-      navigate("/login");
+      setIsLogin(false);
+      navigate("/login", { replace: true });
     } else {
       setIsLogin(true);
     }
