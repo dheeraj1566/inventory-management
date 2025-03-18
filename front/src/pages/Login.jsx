@@ -3,8 +3,8 @@ import { useNavigate } from "react-router-dom";
 import Instance from "../../AxiosConfig";
 
 const Login = ({ setIsLogin }) => {
-  console.log(setIsLogin);
   const navigate = useNavigate();
+  console.log(setIsLogin)
   const [formData, setFormData] = useState({ email: "", password: "" });
   const [message, setMessage] = useState("");
 
@@ -18,17 +18,13 @@ const Login = ({ setIsLogin }) => {
 
     try {
       const res = await Instance.post("/auth/login", formData);
-      console.log("Response Data:", res); 
+      console.log("Response Data:", res);
       localStorage.setItem("token", res.data.token);
       setIsLogin(true);
-      setFormData(
-        {
-          email:"",
-          password:""
-        })
+      setFormData({ email: "", password: "" });
       navigate("/");
     } catch (error) {
-      console.error("Login Failed:", error); 
+      console.error("Login Failed:", error);
       console.log("Error Response:", error.response);
       setMessage(error.response?.data?.message || "Invalid credentials");
     }
@@ -47,7 +43,7 @@ const Login = ({ setIsLogin }) => {
             <input
               type="email"
               name="email"
-              className="w-full px-3 py-2 border rounded outline-solid"
+              className="w-full px-3 py-2 border rounded outline-none"
               placeholder="Enter email"
               onChange={handleChange}
               required
@@ -58,7 +54,7 @@ const Login = ({ setIsLogin }) => {
             <input
               type="password"
               name="password"
-              className="w-full px-3 py-2 border rounded outline-solid"
+              className="w-full px-3 py-2 border rounded outline-none"
               placeholder="Enter password"
               onChange={handleChange}
               required
@@ -85,4 +81,3 @@ const Login = ({ setIsLogin }) => {
 };
 
 export default Login;
-
