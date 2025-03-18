@@ -1,9 +1,10 @@
 {
+    "cleanUrls": true,
     "rewrites": [
       {
         "source": "/*",
-        "destination": "/index.html"
+        "destination": "https://inventory-management-lw8p.vercel.app"
       }
     ]
   }
- 
+  
