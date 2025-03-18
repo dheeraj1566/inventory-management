@@ -7,7 +7,8 @@ import InventoryTable from "./pages/Invetorytable";
 import ChangeInventory from "./pages/ChangeInvetory";
 import Login from "./pages/Login";
 import Register from "./pages/Register";
-import ProtectedRoute from "./ProtectedRoute";
+// import ProtectedRoute from "./ProtectedRoute";
+import ProtectedRoute from "./components/protectedRouter";
 
 function AppRouter() {
   const [isLogin, setIsLogin] = useState(!!localStorage.getItem("token"));
