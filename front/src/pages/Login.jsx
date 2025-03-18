@@ -4,9 +4,9 @@ import Instance from "../../AxiosConfig";
 
 const Login = ({ setIsLogin }) => {
   const navigate = useNavigate();
-  console.log(setIsLogin)
   const [formData, setFormData] = useState({ email: "", password: "" });
   const [message, setMessage] = useState("");
+  const [loading, setLoading] = useState(false); // New loading state
 
   const handleChange = (e) => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
@@ -15,18 +15,19 @@ const Login = ({ setIsLogin }) => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     setMessage("");
+    setLoading(true); // Start loading
 
     try {
       const res = await Instance.post("/auth/login", formData);
-      console.log("Response Data:", res);
       localStorage.setItem("token", res.data.token);
       setIsLogin(true);
       setFormData({ email: "", password: "" });
       navigate("/");
     } catch (error) {
       console.error("Login Failed:", error);
-      console.log("Error Response:", error.response);
       setMessage(error.response?.data?.message || "Invalid credentials");
+    } finally {
+      setLoading(false); // Stop loading after request completes
     }
   };
 
@@ -35,7 +36,7 @@ const Login = ({ setIsLogin }) => {
       <div className="bg-white p-8 rounded-lg shadow-lg w-96">
         <h2 className="text-2xl font-bold text-center mb-4 text-black">Login</h2>
 
-        {message && <p className="text-red-600 text-center text-black">{message}</p>}
+        {message && <p className="text-red-600 text-center">{message}</p>}
 
         <form onSubmit={handleSubmit} className="space-y-4">
           <div>
@@ -54,15 +55,19 @@ const Login = ({ setIsLogin }) => {
             <input
               type="password"
               name="password"
-              className="w-full px-3 py-2 border rounded outline-none text black"
+              className="w-full px-3 py-2 border rounded outline-none text-black"
               placeholder="Enter password"
               onChange={handleChange}
               required
             />
           </div>
 
-          <button type="submit" className="w-full bg-yellow-500 py-2 rounded hover:bg-yellow-600">
-            Login
+          <button
+            type="submit"
+            className="w-full bg-yellow-500 py-2 rounded hover:bg-yellow-600 disabled:bg-gray-400 disabled:cursor-not-allowed"
+            disabled={loading}
+          >
+            {loading ? "Logging in..." : "Login"}
           </button>
         </form>
 
