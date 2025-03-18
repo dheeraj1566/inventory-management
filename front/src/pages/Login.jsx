@@ -3,6 +3,7 @@ import { useNavigate } from "react-router-dom";
 import Instance from "../../AxiosConfig";
 
 const Login = ({ setIsLogin }) => {
+  console.log(setIsLogin);
   const navigate = useNavigate();
   const [formData, setFormData] = useState({ email: "", password: "" });
   const [message, setMessage] = useState("");
@@ -20,6 +21,11 @@ const Login = ({ setIsLogin }) => {
       console.log("Response Data:", res); 
       localStorage.setItem("token", res.data.token);
       setIsLogin(true);
+      setFormData(
+        {
+          email:"",
+          password:""
+        })
       navigate("/");
     } catch (error) {
       console.error("Login Failed:", error); 
