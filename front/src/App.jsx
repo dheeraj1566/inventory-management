@@ -33,7 +33,7 @@
 
 
 import { useState } from "react";
-import { createBrowserRouter, Navigate, RouterProvider } from "react-router-dom";
+import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import NotFound from "./pages/NotFound";
 import First from "./pages/First";
 import AddInventory from "./pages/Addinventory";
@@ -41,11 +41,7 @@ import InventoryTable from "./pages/Invetorytable";
 import ChangeInventory from "./pages/ChangeInvetory";
 import Login from "./pages/Login";
 import Register from "./pages/Register";
-
-const ProtectedRoute = ({ element }) => {
-  const token = localStorage.getItem("token");
-  return token ? element : <Navigate to="/login" />;
-};
+import ProtectedRoute from "./components/protectedRouter";
 
 function App() {
   const [isLogin, setIsLogin] = useState(!!localStorage.getItem("token"));
@@ -70,3 +66,4 @@ function App() {
 }
 
 export default App;
+
