@@ -17,13 +17,14 @@ const Login = ({ setIsLogin }) => {
 
     try {
       const res = await Instance.post("/auth/login", formData);
+      console.log("Response Data:", res); 
       localStorage.setItem("token", res.data.token);
       setIsLogin(true);
-      console.log("Login Success:", res.data); 
       navigate("/dashboard");
     } catch (error) {
+      console.error("Login Failed:", error); 
+      console.log("Error Response:", error.response);
       setMessage(error.response?.data?.message || "Invalid credentials");
-      console.error("Login Failed:", error.response?.data || error.message);
     }
   };
 
