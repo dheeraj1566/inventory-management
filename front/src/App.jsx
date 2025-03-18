@@ -41,7 +41,7 @@ import InventoryTable from "./pages/Invetorytable";
 import ChangeInventory from "./pages/ChangeInvetory";
 import Login from "./pages/Login";
 import Register from "./pages/Register";
-import ProtectedRoute from "./components/ProtectedRouter.jsx";
+import ProtectedRoute from "./ProtectedRouter";
 
 function App() {
   const [isLogin, setIsLogin] = useState(!!localStorage.getItem("token"));
@@ -62,7 +62,7 @@ function App() {
     },
   ]);
 
-  // return <RouterProvider router={router} />;
+  return <RouterProvider router={router} />;
 }
 
 export default App;
