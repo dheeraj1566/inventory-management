@@ -14,11 +14,3 @@ ReactDOM.createRoot(document.getElementById("root")).render(
 
 
  
-// {
-//   "rewrites": [
-//     {
-//       "source": "/*",
-//       "destination": "https://inventory-management-8mn8.onrender.com"
-//     }
-//   ]
-// }

@@ -1,12 +1,14 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
+import useAuth from "../Hooks/Auth";
 import Instance from "../../AxiosConfig";
 
-const Login = ({ setIsLogin }) => {
+const Login = () => {
   const navigate = useNavigate();
+  const { login } = useAuth();
   const [formData, setFormData] = useState({ email: "", password: "" });
   const [message, setMessage] = useState("");
-  const [loading, setLoading] = useState(false); 
+  const [loading, setLoading] = useState(false);
 
   const handleChange = (e) => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
@@ -15,12 +17,11 @@ const Login = ({ setIsLogin }) => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     setMessage("");
-    setLoading(true); 
+    setLoading(true);
 
     try {
       const res = await Instance.post("/auth/login", formData);
-      localStorage.setItem("token", res.data.token);
-      setIsLogin(true);
+      login(res.data.token);
       setFormData({ email: "", password: "" });
       navigate("/");
     } catch (error) {
