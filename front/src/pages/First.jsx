@@ -5,7 +5,7 @@ import { useEffect } from "react";
 import useAuth from "../Hooks/Auth";
 
 function First() {
-  const { isLogin } = useAuth();
+  const { isLogin} = useAuth();
   const navigate = useNavigate();
 
   useEffect(() => {

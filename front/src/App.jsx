@@ -10,7 +10,7 @@ import Register from "./pages/Register";
 import ProtectedRoute from "./ProtectedRouter";
 
 function App() {
-  const { isLogin, login, logout } = useAuth();
+  const {login} = useAuth();
 
   const router = createBrowserRouter([
     { path: "/login", element: <Login login={login} /> },
