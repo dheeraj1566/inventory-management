@@ -11,7 +11,7 @@ import ProtectedRoute from "./ProtectedRouter";
 
 function App() {
   const {login} = useAuth();
-
+console.log("DHEERAJ")
   const router = createBrowserRouter([
     { path: "/login", element: <Login login={login} /> },
     { path: "/register", element: <Register /> },
