@@ -1,74 +1,10 @@
 import express from "express";
-import bcrypt from "bcryptjs";
-import jwt from "jsonwebtoken";
-import usermodel from "../models/usermodel.js";
+import { registerUser, loginUser, checkAuth } from "../controllers/userController.js";
 
 const router = express.Router();
 
-router.post("/register", async (req, res) => {
-  try {
-    const { fname, lname, email, password } = req.body;
-
-    let user = await usermodel.findOne({ email });
-    if (user) return res.status(400).json({ message: "User already exists" });
-
-    const hashedPassword = await bcrypt.hash(password, 10);
-
-    user = new usermodel({ fname, lname, email, password: hashedPassword });
-    await user.save();
-
-    res.status(201).json({ message: "User registered successfully" });
-  } catch (error) {
-    console.error(error);
-    res.status(500).json({ message: "Server Error" });
-  }
-});
-
-// router.post("/login", async (req, res) => {
-//   try {
-//     const { email, password } = req.body;
-//     const user = await usermodel.findOne({ email });
-//     console.log(user)
-//     if (!user) return res.status(400).json({ message: "Invalid Credentials" });
-
-//     const isMatch = await bcrypt.compare(password, user.password);
-//     if (!isMatch) {
-//       return res.status(401).json({ message: "Invalid credentials" });
-//     }
-
-//     const token = jwt.sign({ userId: user._id }, process.env.JWT_SECRET, {
-//       expiresIn: "2h",
-//     });
-//     res.json({ token });
-//   } catch (error) {
-//     console.error(error);
-//     res.status(500).json({ message: "Server Error" });
-//   }
-// });
-
-router.post("/login", async (req, res) => {
-  try {
-    const { email, password } = req.body;
-    const user = await usermodel.findOne({ email });
-
-    if (!user) {
-      return res.status(404).json({ message: "User not found! Please register first." });
-    }
-
-    const isMatch = await bcrypt.compare(password, user.password);
-    if (!isMatch) {
-      return res.status(401).json({ message: "Invalid credentials" });
-    }
-
-    const token = jwt.sign({ userId: user._id }, process.env.JWT_SECRET, {
-      expiresIn: "2h",
-    });
-
-    res.json({ token });
-  } catch (error) {
-    console.error(error);
-    res.status(500).json({ message: "Server Error" });
-  }
-});
+router.post("/register", registerUser);
+router.post("/login", loginUser);
+router.get("/checkToken", checkAuth)
 
 export default router;
