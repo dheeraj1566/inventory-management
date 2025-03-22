@@ -19,7 +19,7 @@ export const registerUser = async (req, res) => {
     res.status(500).json({ message: "Server Error" });
   }
 };
-
+  
 export const loginUser = async (req, res) => {
   try {
     const { email, password } = req.body;
@@ -43,7 +43,7 @@ export const loginUser = async (req, res) => {
       maxAge: 2 * 60 * 60 * 1000, 
     });
 
-    res.json({ message: "Login successful" });
+    res.status(201).json({ message: "User login successfully" });
   } catch (error) {
     console.error(error);
     res.status(500).json({ message: "Server Error" });
