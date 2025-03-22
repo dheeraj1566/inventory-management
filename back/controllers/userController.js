@@ -8,10 +8,10 @@ export const registerUser = async (req, res) => {
 
     let user = await usermodel.findOne({ email });
     if (user) return res.status(400).json({ message: "User already exists" });
-
+    console.log("password"+ password)
     const hashedPassword = await bcrypt.hash(password, 10);
+    console.log("hashed"+hashedPassword);
     user = new usermodel({ fname, lname, email, password: hashedPassword });
-
     await user.save();
     res.status(201).json({ message: "User registered successfully" });
   } catch (error) {
