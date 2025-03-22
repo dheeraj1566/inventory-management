@@ -1,5 +1,5 @@
 import bcrypt from "bcryptjs";
-import jwt from "jsonwebtoken";
+// import jwt from "jsonwebtoken";
 import usermodel from "../models/usermodel.js";
 
 export const registerUser = async (req, res) => {
@@ -34,14 +34,14 @@ export const loginUser = async (req, res) => {
       return res.status(401).json({ message: "Invalid credentials" });
     }
 
-    const token = jwt.sign({ userId: user._id }, process.env.JWT_SECRET, { expiresIn: "2h" });
+    // const token = jwt.sign({ userId: user._id }, process.env.JWT_SECRET, { expiresIn: "2h" });
 
-    res.cookie("token", token, {
-      httpOnly: true, 
-      secure: process.env.NODE_ENV === "production", 
-      sameSite: "strict",
-      maxAge: 2 * 60 * 60 * 1000, 
-    });
+    // res.cookie("token", token, {
+    //   httpOnly: true, 
+    //   secure: process.env.NODE_ENV === "production", 
+    //   sameSite: "strict",
+    //   maxAge: 2 * 60 * 60 * 1000, 
+    // });
 
     res.status(201).json({ message: "User login successfully" });
   } catch (error) {
