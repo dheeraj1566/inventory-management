@@ -14,7 +14,6 @@ function Header() {
   const handleLogout = async () => {
     try {
       await Instance.post("/auth/logout");
-      localStorage.removeItem("token");
       setIsAuthenticated(false);
       navigate("/login");
     } catch (error) {

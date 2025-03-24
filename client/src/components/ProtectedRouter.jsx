@@ -27,7 +27,7 @@ function ProtectedRoute({ children }) {
   }
   if (loading) return <div id="">LOADING...</div>;
   
-  isAuthenticated ? children : <Navigate to="/login" replace />;
+  return isAuthenticated ? children : <Navigate to="/login" replace />;
 }
 
 export default ProtectedRoute;
