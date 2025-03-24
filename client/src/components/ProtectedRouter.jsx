@@ -4,7 +4,9 @@ import Instance from "../AxiosConfig";
 
 function ProtectedRoute({ children }) {
   const [isAuthenticated, setIsAuthenticated] = useState(false);
-  const [loading, setLoading] = useState(false);
+  const [loading, setLoading] = useState(true);
+
+  // console.log(isAuthenticated);
   useEffect(() => {
     checkForToken();
   }, []);
