@@ -1,16 +1,19 @@
 import mongoose from "mongoose";
-import {v4 as uuidv4} from "uuid"; 
 
-const inventorySchema = new mongoose.Schema(
-  {
-    srno: { type: String, unique: true, default: ()=> uuidv4() },
-    itemname: { type: String, required: true },
-    category: { type: String, required: true},
-    qty: { type: Number, required: true },
-    threshold: { type: String, required: true },
-    status: { type: String, required: true, enum: ["instock", "outOfStock"] },
+const itemSchema = new mongoose.Schema({
+  name: String,
+  qty: Number,
+  threshold: Number,
+  status: {
+    type: String,
+    enum: ["Available", "Out of Stock"],
   },
-  { timestamps: true }
-);
+});
 
-export default mongoose.model("inventory", inventorySchema);
+const inventorySchema = new mongoose.Schema({
+  category: String,
+  items: [itemSchema], 
+});
+
+const inventoryEntries = mongoose.model("Inventory", inventorySchema);
+export default inventoryEntries;

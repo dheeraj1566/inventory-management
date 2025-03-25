@@ -25,6 +25,7 @@ app.use(express.json());
 app.use("/auth", authRoutes);
 app.use("/add", inventoryRoutes);
 
+
 mongoose
   .connect(process.env.MONGO_URI)
   .then(() => console.log("MongoDB Connected"))
