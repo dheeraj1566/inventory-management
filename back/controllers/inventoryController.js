@@ -48,3 +48,36 @@ export const getInventory = async (req, res) => {
     res.status(500).json({ message: "Server error", error: error.message });
   }
 };
+
+// Update Inventory Item
+export const updateInventoryItem = async (req, res) => {
+  try {
+    const { category, name, qty, threshold, status } = req.body;
+
+    if (!category || !name) {
+      return res.status(400).json({ error: "Category and Item Name are required." });
+    }
+
+    const inventoryCategory = await inventoryEntries.findOne({ category });
+
+    if (!inventoryCategory) {
+      return res.status(404).json({ error: "Category not found." });
+    }
+
+    const item = inventoryCategory.items.find((item) => item.name === name);
+
+    if (!item) {
+      return res.status(404).json({ error: "Item not found in this category." });
+    }
+
+    item.qty = qty;
+    item.threshold = threshold;
+    item.status = status;
+
+    await inventoryCategory.save();
+    res.status(200).json({ message: "Inventory updated successfully", updatedItem: item });
+  } catch (error) {
+    console.error("Error updating inventory:", error);
+    res.status(500).json({ error: "Internal Server Error" });
+  }
+};

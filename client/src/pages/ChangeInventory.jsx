@@ -14,7 +14,7 @@ const ChangeInventory = () => {
   useEffect(() => {
     if (!category || !name) {
       alert("Invalid inventory item.");
-      navigate("/");
+      navigate("/inventory-table");
     }
   }, [category, name, navigate]);
 
