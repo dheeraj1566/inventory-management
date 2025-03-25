@@ -4,7 +4,7 @@ import Instance from "../AxiosConfig";
 import { useNavigate } from "react-router-dom";
 import { useState ,useEffect} from "react";
 
-function AddInventory() {
+function AddCategory() {
   const [itemName, setItemName] = useState("");
   const [category, setCategory] = useState("");
   const [qty, setQty] = useState("");
@@ -118,4 +118,4 @@ function AddInventory() {
   );
 }
 
-export default AddInventory;
+export default AddCategory;

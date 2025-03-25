@@ -54,17 +54,17 @@ function IssueInventory() {
   return (
     <div className="wrapper">
       <div className="main flex items-start justify-center">
-        <div className="add_inventory rounded-2xl bg-blue-100 w-3/5 m-auto my-8 px-10 py-8">
+        <div className="add_inventory rounded-2xl bg-blue-100 w-4/5 m-auto my-8 px-10 py-8">
           <h1 className="text-blue-900 text-3xl font-bold text-center px-8 py-2">
             Issued Inventory
           </h1>
           <form onSubmit={handleIssueInventory}>
-            <div className="grid grid-cols-2 gap-6 px-6 py-10">
+            <div className="grid grid-cols-3 gap-8 px-8 py-10">
               {/* Inventory Name */}
               <div className="font-bold">
-                <label htmlFor="itemName">Inventory Name</label>
+                <label htmlFor="itemName " className="text-blue-900">Inventory Name</label>
                 <input
-                  className="border-2 my-2 px-5 py-2 w-full"
+                  className="border-2 my-2 px-5 py-2 text-black w-full"
                   type="text"
                   placeholder="Item Name"
                   value={itemName}
@@ -75,22 +75,35 @@ function IssueInventory() {
 
               {/* Quantity */}
               <div className="font-bold">
-                <label htmlFor="qty">Quantity</label>
+                <label htmlFor="qty" className="text-blue-900">Quantity</label>
                 <input
-                  className="border-2 my-2 px-5 py-2 w-full"
+                  className="border-2 my-2 px-5 py-2 text-black w-full"
                   type="number"
                   value={qty}
+                  placeholder="Qty"
                   onChange={(e) => setQty(e.target.value)}
+                  required
+                />
+              </div>
+                 {/* Date */}
+                 <div className="font-bold">
+                <label htmlFor="date" className="text-blue-900">Date</label>
+                <input
+                  className="border-2 my-2 px-5 py-2 text-black w-full"
+                  type="date"
+                  value={date}
+                  onChange={(e) => setDate(e.target.value)}
                   required
                 />
               </div>
 
               {/* Faculty Name */}
               <div className="font-bold">
-                <label htmlFor="facultyName">Faculty Name</label>
+                <label htmlFor="facultyName" className="text-blue-900">Faculty Name</label>
                 <input
-                  className="border-2 my-2 px-5 py-2 w-full"
+                  className="border-2 my-2 px-5 py-2 text-black w-full"
                   type="text"
+                  placeholder="Faculty Name"
                   value={facultyName}
                   onChange={(e) => setFacultyName(e.target.value)}
                   required
@@ -99,27 +112,18 @@ function IssueInventory() {
 
               {/* Department Name */}
               <div className="font-bold">
-                <label htmlFor="dept">Department Name</label>
+                <label htmlFor="dept" className="text-blue-900">Department Name</label>
                 <input
-                  className="border-2 my-2 px-5 py-2 w-full"
+                  className="border-2 my-2 px-5 py-2 text-black w-full"
                   type="text"
+                  placeholder="Department Name"
                   value={deptName}
                   onChange={(e) => setDeptName(e.target.value)}
                   required
                 />
               </div>
 
-              {/* Date */}
-              <div className="font-bold">
-                <label htmlFor="date">Date</label>
-                <input
-                  className="border-2 my-2 px-5 py-2 w-full"
-                  type="date"
-                  value={date}
-                  onChange={(e) => setDate(e.target.value)}
-                  required
-                />
-              </div>
+           
             </div>
 
             <div className="flex justify-center items-center">

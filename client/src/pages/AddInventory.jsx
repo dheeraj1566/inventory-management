@@ -57,16 +57,16 @@ function AddInventory() {
   return (
     <div className="wrapper">
       <div className="main flex items-start justify-center">
-        <div className="add_inventory rounded-2xl bg-blue-100 w-3/5 m-auto my-8 px-10 py-8">
+        <div className="add_inventory rounded-2xl bg-blue-100 w-4/6 m-auto my-8 px-10 py-8">
           <h1 className="text-blue-900 text-3xl font-bold text-center px-8 py-2">
             Add Inventory
           </h1>
           <form onSubmit={handleAddInventory}>
-            <div className="grid grid-cols-2 gap-6 px-6 py-10">
-              <div className="font-bold">
+            <div className="grid grid-cols-2 gap-8 px-8 py-10">
+              <div className="font-bold text-blue-900">
                 <label htmlFor="itemName">Inventory Name</label>
                 <input
-                  className="border-2 my-2 px-5 py-2 w-full"
+                  className="border-2 my-2 px-5  text-black py-2 w-full"
                   type="text"
                   placeholder="Item Name"
                   value={itemName}
@@ -75,7 +75,7 @@ function AddInventory() {
                 />
               </div>
 
-              <div className="font-bold">
+              <div className="font-bold text-blue-900">
                 <label htmlFor="category">Category</label>
                 <select
                   className="border-2 my-2 px-5 py-2 w-full text-black"
@@ -92,22 +92,24 @@ function AddInventory() {
                 </select>
               </div>
 
-              <div className="font-bold">
+              <div className="font-bold text-blue-900">
                 <label htmlFor="qty">Quantity</label>
                 <input
-                  className="border-2 my-2 px-5 py-2 w-full"
+                  className="border-2 my-2 px-5 py-2  text-black w-full"
                   type="number"
                   value={qty}
+                  placeholder="Qty"
                   onChange={(e) => setQty(e.target.value)}
                   required
                 />
               </div>
 
-              <div className="font-bold">
+              <div className="font-bold text-blue-900">
                 <label htmlFor="threshold">Threshold</label>
                 <input
-                  className="border-2 my-2 px-5 py-2 w-full"
+                  className="border-2 my-2 px-5 py-2  text-black w-full"
                   type="number"
+                  placeholder="Threshold"
                   value={threshold}
                   onChange={(e) => setThreshold(e.target.value)}
                   required
