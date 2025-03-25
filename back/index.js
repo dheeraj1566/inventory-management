@@ -13,7 +13,8 @@ const app = express();
 const PORT = process.env.PORT || 5000;
 
 const corsOptions = {
-  origin: process.env.FRONTEND_URL,
+  // origin: process.env.FRONTEND_URL,
+  origin: `https://inventory-management-bice-mu.vercel.app/`
   methods: "GET,POST,DELETE",
   credentials: true,
   optionsSuccessStatus: 200,
