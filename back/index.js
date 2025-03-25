@@ -4,7 +4,8 @@ import dotenv from "dotenv";
 import cors from "cors";
 import cookieParser from "cookie-parser";
 import authRoutes from "./routes/authRouts.js";
-import inventoryRoutes from "./routes/inventoryRoutes.js"
+import inventoryRoutes from "./routes/inventoryRoutes.js";
+import issueRoutes from "./routes/issueRoutes.js";
 
 dotenv.config();
 
@@ -24,6 +25,7 @@ app.use(express.json());
 
 app.use("/auth", authRoutes);
 app.use("/add", inventoryRoutes);
+app.use("/issue", issueRoutes)
 
 
 mongoose
