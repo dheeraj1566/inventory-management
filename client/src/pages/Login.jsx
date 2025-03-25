@@ -3,9 +3,8 @@ import { Link, useNavigate } from "react-router-dom";
 import { FaUser } from "react-icons/fa";
 import { useAuth } from "../context/AuthContext";
 import Instance from "../AxiosConfig";
-import { checkAuth } from "../../../back/controllers/userController";
 
-function Login(checkAuth) {
+function Login() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const { setIsAuthenticated } = useAuth();
@@ -15,9 +14,9 @@ function Login(checkAuth) {
     e.preventDefault();
     try {
       const response = await Instance.post("/auth/login", { email, password });
+
       if (response.status === 200) {
         setIsAuthenticated(true);
-        checkAuth();
         navigate("/"); 
       }
     } catch (error) {
