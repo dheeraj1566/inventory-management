@@ -81,3 +81,65 @@ export const updateInventoryItem = async (req, res) => {
     res.status(500).json({ error: "Internal Server Error" });
   }
 };
+
+
+
+export const issueInventory = async (req, res) => {
+  try {
+    const { category, itemName, issuedTo, issuedQty } = req.body;
+
+    if (!category || !itemName || !issuedTo || issuedQty === undefined) {
+      return res.status(400).json({ message: "All fields are required" });
+    }
+
+    const inventory = await inventoryEntries.findOne({ category });
+
+    if (!inventory) {
+      return res.status(404).json({ message: "Category not found" });
+    }
+
+    const item = inventory.items.find((i) => i.name === itemName);
+
+    if (!item) {
+      return res.status(404).json({ message: "Item not found" });
+    }
+
+    if (item.qty < issuedQty) {
+      return res.status(400).json({ message: "Not enough stock available" });
+    }
+
+    // Deduct the issued quantity from stock
+    item.qty -= issuedQty;
+
+    // Add issued record
+    inventory.issuedItems.push({
+      itemName,
+      issuedTo,
+      issuedQty,
+    });
+
+    // Update item status
+    item.status = item.qty > item.threshold ? "Available" : "Out of Stock";
+
+    await inventory.save();
+
+    res.status(200).json({ message: "Item issued successfully!", inventory });
+  } catch (error) {
+    console.error("Error issuing inventory:", error);
+    res.status(500).json({ message: "Server error", error: error.message });
+  }
+};
+export const getIssuedInventory = async (req, res) => {
+  try {
+    const issuedInventory = await inventoryEntries.find({}, "category issuedItems");
+    
+    if (!issuedInventory || issuedInventory.length === 0) {
+      return res.status(404).json({ message: "No issued inventory found." });
+    }
+
+    res.status(200).json(issuedInventory);
+  } catch (error) {
+    console.error("Error fetching issued inventory:", error);
+    res.status(500).json({ message: "Server error", error: error.message });
+  }
+};
