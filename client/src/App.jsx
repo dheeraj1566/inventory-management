@@ -12,6 +12,7 @@ import UserProfile from "./pages/UserProfile";
 import Login from "./pages/Login";
 import First from "./pages/First";
 import ProtectedRoute from "./components/ProtectedRouter";
+import IssuedInventoryTable from "./pages/IssuedInventoryTable.jsx";
 
 
 
@@ -22,6 +23,8 @@ const router = createBrowserRouter([
     children: [
       { path: "/login", element: <Login /> },
       {
+
+        
         path: "/add-inventory",
         element: (
           <ProtectedRoute>
@@ -53,6 +56,17 @@ const router = createBrowserRouter([
           </ProtectedRoute>
         ),
       },
+
+      {
+        path: "/issued-inventory-table",
+        element: (
+          <ProtectedRoute>
+            <IssuedInventoryTable />
+          </ProtectedRoute>
+        ),
+      },
+
+
       {
         path: "/return-inventory",
         element: (

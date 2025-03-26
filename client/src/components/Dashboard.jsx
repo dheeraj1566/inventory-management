@@ -24,8 +24,14 @@ function Dashboard() {
           </Link> */}
           <Link to="/issue-inventory">
             <li className="py-3 text-lg hover:font-bold text-blue-50 px-5 hover:bg-gray-50 hover:text-blue-900 border-black border-b-1">
-              Issued Inventory
+              Issue Inventory
             </li>
+            </Link>
+            <Link to="/issued-inventory-table">
+            <li className="py-3 text-lg hover:font-bold text-blue-50 px-5 hover:bg-gray-50 hover:text-blue-900 border-black border-b-1">
+              Issued Inventory Table
+            </li>
+
           </Link>
           <Link to="/request">
             <li className="py-3 text-lg hover:font-bold hover:bg-gray-50 hover:text-blue-900 text-blue-50 px-5 border-black border-b-1">

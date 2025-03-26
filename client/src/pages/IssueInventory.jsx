@@ -56,7 +56,7 @@ function IssueInventory() {
       <div className="main flex items-start justify-center">
         <div className="add_inventory rounded-2xl bg-blue-100 w-4/5 m-auto my-8 px-10 py-8">
           <h1 className="text-blue-900 text-3xl font-bold text-center px-8 py-2">
-            Issued Inventory
+            Issue Inventory
           </h1>
           <form onSubmit={handleIssueInventory}>
             <div className="grid grid-cols-3 gap-8 px-8 py-10">

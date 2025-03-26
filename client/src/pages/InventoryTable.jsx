@@ -24,7 +24,7 @@ const InventoryTable = () => {
       <h1 className="text-2xl font-bold mb-4 text-center  text-black">Inventory Table</h1>
 
       {loading ? (
-        <p className="text-center">Loading...</p>
+        <p className="text-center text-black">Loading...</p>
       ) : (
         <div className="overflow-x-auto">
           <table className="min-w-full border   text-black border-gray-600">

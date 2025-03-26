@@ -129,7 +129,7 @@ function Login() {
           <FaUser />
         </div>
 
-        <h1 className="text-xl text-gray-200 py-3">
+        <h1 className="text-xl font-bold text-gray-200 py-3">
           IISU Inventory Management System
         </h1>
         {error && <p className="text-red-500">{error}</p>}
