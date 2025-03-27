@@ -83,7 +83,6 @@ export const updateInventoryItem = async (req, res) => {
 };
 
 
-
 export const issueInventory = async (req, res) => {
   try {
     const { category, itemName, issuedTo, issuedQty } = req.body;

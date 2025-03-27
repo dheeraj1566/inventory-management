@@ -10,7 +10,6 @@ function AddInventory() {
   const [qty, setQty] = useState("");
   const [threshold, setThreshold] = useState("");
 
-  const { setIsAuthenticated } = useAuth();
   const navigate = useNavigate();
 
   useEffect(() => {

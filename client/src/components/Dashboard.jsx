@@ -50,6 +50,11 @@ function Dashboard() {
               Report
             </li>
           </Link>
+          <Link to="/threshold">
+            <li className="py-3 text-lg hover:font-bold hover:bg-gray-50 hover:text-blue-900 text-blue-50 px-5 border-black border-b-1">
+              Threshold
+            </li>
+          </Link>
           <li className="py-3 text-lg hover:font-bold hover:bg-gray-50 hover:text-blue-900 text-blue-50 px-5 my-3 border-black border-b-1"></li>
         </ul>
 
