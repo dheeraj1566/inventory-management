@@ -21,9 +21,21 @@ export function AuthProvider({ children }) {
     }
   };
 
+  const logout = async ()=>{
+    try {
+      const res = await axios.get("/auth/logOut");
+      if (res.status === 200) {
+        setIsAuthenticated(false);
+      }
+    } catch (error) {
+      
+    }
+  }
+
+  
   return (
     <AuthContext.Provider
-      value={{ isAuthenticated, setIsAuthenticated, checkAuth }}
+      value={{ isAuthenticated, setIsAuthenticated, checkAuth, logout}}
     >
       {children}
     </AuthContext.Provider>

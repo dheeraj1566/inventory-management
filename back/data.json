@@ -1,7 +1,7 @@
 [
   {
     "category": "Electronics",
-    "items": [
+    "items": [ 
       { "name": "Laptop", "qty": 10, "threshold": 2, "status": "Available" },
       { "name": "Smartphone", "qty": 5, "threshold": 3, "status": "Available" },
       { "name": "Tablet", "qty": 8, "threshold": 2, "status": "Available" },

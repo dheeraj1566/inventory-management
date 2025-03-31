@@ -12,6 +12,7 @@ import UserProfile from "./pages/UserProfile";
 import Login from "./pages/Login";
 import First from "./pages/First";
 import ProtectedRoute from "./components/ProtectedRouter";
+import Register from "./pages/SignUp.jsx";
 
 
 
@@ -21,6 +22,7 @@ const router = createBrowserRouter([
     element: <First />,
     children: [
       { path: "/login", element: <Login /> },
+      { path: "/signUp", element: <Register /> },
       {
         path: "/add-inventory",
         element: (
