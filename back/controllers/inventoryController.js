@@ -81,6 +81,9 @@ export const updateInventoryItem = async (req, res) => {
   }
 };
 
+
+// issueInventroy
+
 export const issueInventory = async (req, res) => {
   try {
     const { category, itemName, issuedTo, issuedQty } = req.body;
@@ -124,6 +127,8 @@ export const issueInventory = async (req, res) => {
     res.status(500).json({ message: "Server error", error: error.message });
   }
 };
+
+// getIssuedInventory // 
 export const getIssuedInventory = async (req, res) => {
   try 
   {
@@ -138,6 +143,8 @@ export const getIssuedInventory = async (req, res) => {
     res.status(500).json({ message: "Server error", error: error.message });
   }
 };
+
+// removedInventoryIteam  //
 
 export const removeInventoryItem = async (req, res) => {
   try {
@@ -155,9 +162,7 @@ export const removeInventoryItem = async (req, res) => {
 
     const itemIndex = inventoryCategory.items.findIndex((item) => item.name === itemName);
 
-    if (itemIndex === -1) {
-      return res.status(404).json({ message: "Item not found in this category." });
-    }
+  
 
     const removedItem = inventoryCategory.items[itemIndex];
 
