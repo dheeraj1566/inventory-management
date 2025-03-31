@@ -1,7 +1,7 @@
 import mongoose from "mongoose";
 import { v4 as uuidv4 } from "uuid"; 
 import inventoryEntries from "../models/inventoryEntries.js"; 
-import removedInventory from "./removedINV.js";
+import removedInventory from "../models/removedINV.js";
 
 export const addInventory = async (req, res) => {
   try {
@@ -105,17 +105,15 @@ export const issueInventory = async (req, res) => {
       return res.status(400).json({ message: "Not enough stock available" });
     }
 
-    // Deduct the issued quantity from stock
+
     item.qty -= issuedQty;
 
-    // Add issued record
     inventory.issuedItems.push({
       itemName,
       issuedTo,
       issuedQty,
     });
 
-    // Update item status
     item.status = item.qty > item.threshold ? "Available" : "Out of Stock";
 
     await inventory.save();

@@ -8,6 +8,10 @@ const InventoryTable = () => {
   const navigate = useNavigate();
 
   useEffect(() => {
+    fetchInventory();
+  }, []);
+
+  const fetchInventory = () => {
     Instance.get("/add/getTable")
       .then((res) => {
         setInventory(res.data);
@@ -17,7 +21,20 @@ const InventoryTable = () => {
         console.error("Error fetching inventory:", error);
         setLoading(false);
       });
-  }, []);
+  };
+
+  const handleDelete = async (category, itemName) => {
+    try {
+      const response = await Instance.delete("/add/removeInventory", {
+        data: { category, itemName },
+      });
+      alert(response.data.message);
+      fetchInventory(); // Refresh inventory after deletion
+    } catch (error) {
+      console.error("Error deleting inventory item:", error);
+      alert("Failed to delete item");
+    }
+  };
 
   return (
     <div className="p-6">
@@ -59,7 +76,7 @@ const InventoryTable = () => {
                     </td>
                     <td className="border px-4 py-2">
                       <button
-                        className="bg-yellow-500 text-white px-4 py-2 rounded-md"
+                        className="bg-yellow-500 text-white px-4 py-2 rounded-md mr-2"
                         onClick={() =>
                           navigate("/change-inventory", {
                             state: { category: categoryData.category, ...item },
@@ -67,6 +84,12 @@ const InventoryTable = () => {
                         }
                       >
                         Update
+                      </button>
+                      <button
+                        className="bg-blue-800 text-white px-4 py-2 rounded-md"
+                        onClick={() => handleDelete(categoryData.category, item.name)}
+                      >
+                        Delete
                       </button>
                     </td>
                   </tr>
