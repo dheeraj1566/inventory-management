@@ -6,7 +6,6 @@ import cookieParser from "cookie-parser";
 import authRoutes from "./routes/authRouts.js";
 import inventoryRoutes from "./routes/inventoryRoutes.js";
 
-
 dotenv.config();
 
 const app = express();
@@ -15,8 +14,9 @@ const PORT = process.env.PORT || 5000;
 const corsOptions = {
   origin: process.env.FRONTEND_URL,
   // origin: `https://inventory-management-front.onrender.com`,
-  methods: "GET,POST,PUT,DELETE",
   credentials: true,
+  methods: ["GET", "POST", "PUT", "DELETE"],
+  allowedHeaders: ["Content-Type", "Authorization", "x-csrf-token"],
   optionsSuccessStatus: 200,
 };
 
@@ -26,8 +26,6 @@ app.use(express.json());
 
 app.use("/auth", authRoutes);
 app.use("/add", inventoryRoutes);
-
-
 
 mongoose
   .connect(process.env.MONGO_URI)
