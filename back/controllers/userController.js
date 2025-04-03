@@ -5,12 +5,11 @@ import usermodel from "../models/usermodel.js";
 export const registerUser = async (req, res) => {
   try {
     const { fname, lname, email, password } = req.body;
-
     let user = await usermodel.findOne({ email });
     if (user) return res.status(400).json({ message: "User already exists" });
     console.log("password"+ password)
     const hashedPassword = await bcrypt.hash(password, 10);
-    console.log("hashed"+hashedPassword);
+    console.log("hashed"+ hashedPassword);
     user = new usermodel({ fname, lname, email, password: hashedPassword });
     await user.save();
     res.status(200).json({ message: "User registered successfully" });
@@ -42,7 +41,7 @@ export const loginUser = async (req, res) => {
       sameSite: "none",
       maxAge: 2 * 60 * 60 * 1000, 
     });
-
+    console.log("user login successfully" + token);
     res.status(200).json({ message: "User login successfully" });
   } catch (error) {
     console.error(error);
@@ -55,11 +54,11 @@ export const checkAuth = async (req, res) => {
   if (!token) {
     return res.status(401).json({ message: "No token found, please log in" });
   }
-
   try {
     jwt.verify(token, process.env.JWT_SECRET);
     res.status(200).json({ message: "User authenticated" }); 
-  } catch (error) {
+  } 
+  catch (error) {
     res.status(401).json({ message: "Invalid token" });
   }
 };

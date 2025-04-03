@@ -11,6 +11,7 @@ const InventoryTable = () => {
     fetchInventory();
   }, []);
 
+  console.log(inventory)
   const fetchInventory = () => {
     Instance.get("/add/getTable")
       .then((res) => {
@@ -29,7 +30,7 @@ const InventoryTable = () => {
         data: { category, itemName },
       });
       alert(response.data.message);
-      fetchInventory(); // Refresh inventory after deletion
+      fetchInventory(); 
     } catch (error) {
       console.error("Error deleting inventory item:", error);
       alert("Failed to delete item");
